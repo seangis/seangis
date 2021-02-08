@@ -1,0 +1,65 @@
+from sklearn.preprocessing import scale
+from sklearn.preprocessing import StandardScaler 
+from sklearn import decomposition
+import pandas as pd
+import numpy as np
+import plotly.express as px
+import matplotlib as plt
+
+# load in the data
+df = pandas.read_csv('.csv')
+df.head()
+#create main DataFrame
+df = pd.DataFrame(columns=['', ...])
+#create variables/features dataframe as (x)
+x = df[['', ...]]
+x.head(10)
+#create target/labels dataframe as (y)
+y = df[["", ...]]
+y.head(10)
+#rescaling/standardisation 
+x_sta = StandardScaler().fit_transform(x)
+print(x_sta) #creates array of pre-processed data
+
+#covariance matrix of features 
+features = x_sta.T
+covariance_matrix = np.cov(features)
+print (covariance_matrix)
+
+#Get Eigen Vecs/Vals from Covarience Matrix
+eig_vals, eig_vecs = np.linalg.eig(covariance_matrix)
+
+print('eigenvectors \n%s' %eig_vecs)
+
+print('\nEigenvalues \n%s' %eig_vals)###
+
+# Variance ratio between components (for scree):
+
+
+explained_variance = eig_vals[0,1,...] / sum(eig_vals)
+print(explained_variance)
+cumulative_exp_var = np.cumsum(explained_variance)
+
+OR
+
+explained_variance = pca.explained_variance_ratio_
+print(explained_variance)
+
+# plot scree 
+
+plt.bar
+
+# conduct PCA with desired components(?)
+
+pca = decomposition.PCA(n_components=?)
+pca.fit(x_sta)
+
+scores = pca.transform(x_sta)
+
+# create dataframe of scores 
+scores_df = pd.DataFrame(scores, columns='PC...)
+print(scores_df)
+
+# retrive loadings values
+loadings = pca.components_.T
+df_loadings = pd.DataFrame(loadings, columns=['P...'], index='sample1'...)
